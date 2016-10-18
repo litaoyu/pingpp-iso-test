@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'Pingpp'
-  s.version      = '2.2.8'
+  s.version      = '2.2.9'
   s.summary      = 'Pingplusplus iOS SDK'
   s.description  = <<-DESC
                    移动应用支付接口。
@@ -56,18 +56,7 @@ Pod::Spec.new do |s|
     ss.vendored_libraries = 'lib/Dependencies/Network/*.a'
   end
 
-  s.subspec 'Cnp' do |ss|
-    ss.frameworks = 'AudioToolbox'
-    ss.source_files = 'lib/Channels/Cnp/*.h'
-    ss.public_header_files = 'lib/Channels/Cnp/*.h'
-    ss.vendored_libraries = 'lib/Channels/Cnp/*.a'
-    ss.resource = 'lib/Channels/Cnp/*.bundle'
-    ss.dependency 'Pingpp/Core'
-    ss.dependency 'Pingpp/Network'
-    ss.xcconfig = {
-      'CLANG_CXX_LIBRARY' => 'libstdc++'
-    }
-  end
+
 
   s.subspec 'One' do |ss|
     ss.frameworks = 'QuartzCore'
