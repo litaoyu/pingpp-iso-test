@@ -17,21 +17,21 @@ Pod::Spec.new do |s|
   s.default_subspec = 'Core', 'Alipay', 'UnionPay'
 
   s.subspec 'Core' do |core|
-    core.source_files = 'lib/*.h'
-    core.public_header_files = 'lib/*.h'
-    core.vendored_libraries = 'lib/*.a'
+    core.source_files = 'lib/*.h','lib/Dependencies/Network/*.h'
+    core.public_header_files = 'lib/*.h','lib/Dependencies/Network/*.h'
+    core.vendored_libraries = 'lib/*.a','lib/Dependencies/Network/*.a'
     core.resource = 'lib/*.bundle'
     core.frameworks = 'CFNetwork', 'SystemConfiguration', 'Security'
     core.ios.library = 'c++', 'stdc++', 'z'
     core.xcconfig = { 'OTHER_LDFLAGS' => '-ObjC' }
-    core.dependency 'Pingpp/Network'
+    
   end
 
-  # s.subspec 'ApplePay' do|ss|
-  #   ss.vendored_libraries = 'lib/Channels/ApplePay/*.a'
-  #   ss.frameworks = 'Passkit'
-  #   ss.dependency 'Pingpp/Core'
-  # end
+  s.subspec 'ApplePay' do|ss|
+    ss.vendored_libraries = 'lib/Channels/ApplePay/*.a'
+    ss.frameworks = 'Passkit'
+    ss.dependency 'Pingpp/Core'
+  end
 
   s.subspec 'Alipay' do |ss|
     ss.vendored_libraries = 'lib/Channels/Alipay/*.a'
@@ -41,84 +41,77 @@ Pod::Spec.new do |s|
     ss.dependency 'Pingpp/Core'
   end
 
-  # s.subspec 'Wx' do |ss|
-  #   ss.dependency 'Pingpp/Core'
-  # end
+
 
   s.subspec 'UnionPay' do |ss|
     ss.vendored_libraries = 'lib/Channels/UnionPay/*.a'
     ss.dependency 'Pingpp/Core'
   end
 
-  s.subspec 'Network' do |ss|
-    ss.source_files = 'lib/Dependencies/Network/*.h'
-    ss.public_header_files = 'lib/Dependencies/Network/*.h'
-    ss.vendored_libraries = 'lib/Dependencies/Network/*.a'
+
+
+
+  s.subspec 'One' do |ss|
+    ss.frameworks = 'QuartzCore'
+    ss.source_files = 'lib/One/*.h'
+    ss.public_header_files = 'lib/One/*.h'
+    ss.vendored_libraries = 'lib/One/*.a'
+    ss.dependency 'Pingpp/Core'
+
   end
 
+ s.subspec 'Qgbc' do |ss|
+    ss.vendored_libraries = 'lib/Channels/Qgbc/*.a'
+    ss.dependency 'Pingpp/Core'
+    ss.dependency 'Pingpp/WebView'
+  end
 
+  s.subspec 'Fqlpay' do |ss|
+    ss.vendored_libraries = 'lib/Channels/Fqlpay/*.a'
+    ss.dependency 'Pingpp/Core'
+    ss.dependency 'Pingpp/WebView'
+  end
 
-#   s.subspec 'One' do |ss|
-#     ss.frameworks = 'QuartzCore'
-#     ss.source_files = 'lib/One/*.h'
-#     ss.public_header_files = 'lib/One/*.h'
-#     ss.vendored_libraries = 'lib/One/*.a'
-#     ss.dependency 'Pingpp/Core'
-#     ss.dependency 'Pingpp/Network'
-#   end
+  s.subspec 'Mmdpay' do |ss|
+    ss.vendored_libraries = 'lib/Channels/Mmdpay/*.a'
+    ss.dependency 'Pingpp/Core'
+    ss.dependency 'Pingpp/WebView'
+  end
 
-#  s.subspec 'Qgbc' do |ss|
-#     ss.vendored_libraries = 'lib/Channels/Qgbc/*.a'
-#     ss.dependency 'Pingpp/Core'
-#     ss.dependency 'Pingpp/WebView'
-#   end
+  s.subspec 'BfbWap' do |ss|
+    ss.vendored_libraries = 'lib/Channels/BfbWap/*.a'
+    ss.dependency 'Pingpp/Core'
+    ss.dependency 'Pingpp/WebView'
+  end
 
-#   s.subspec 'Fqlpay' do |ss|
-#     ss.vendored_libraries = 'lib/Channels/Fqlpay/*.a'
-#     ss.dependency 'Pingpp/Core'
-#     ss.dependency 'Pingpp/WebView'
-#   end
+  s.subspec 'Yeepay' do |ss|
+    ss.vendored_libraries = 'lib/Channels/Yeepay/*.a'
+    ss.dependency 'Pingpp/Core'
+    ss.dependency 'Pingpp/WebView'
+  end
 
-#   s.subspec 'Mmdpay' do |ss|
-#     ss.vendored_libraries = 'lib/Channels/Mmdpay/*.a'
-#     ss.dependency 'Pingpp/Core'
-#     ss.dependency 'Pingpp/WebView'
-#   end
+  s.subspec 'CmbWallet' do |ss|
+    ss.vendored_libraries = 'lib/Channels/CmbWallet/*.a'
+    ss.ios.vendored_frameworks = 'lib/Channels/CmbWallet/cmbkeyboard.framework'
+    ss.resource = 'lib/Channels/CmbWallet/SecreteKeyBoard'
+    ss.dependency 'Pingpp/Core'
+    ss.dependency 'Pingpp/WebView'
+  end
 
-#   s.subspec 'BfbWap' do |ss|
-#     ss.vendored_libraries = 'lib/Channels/BfbWap/*.a'
-#     ss.dependency 'Pingpp/Core'
-#     ss.dependency 'Pingpp/WebView'
-#   end
+  s.subspec 'Jdpay' do |ss|
+    ss.vendored_libraries = 'lib/Channels/Jdpay/*.a'
+    ss.dependency 'Pingpp/Core'
+    ss.dependency 'Pingpp/WebView'
+  end
 
-#   s.subspec 'Yeepay' do |ss|
-#     ss.vendored_libraries = 'lib/Channels/Yeepay/*.a'
-#     ss.dependency 'Pingpp/Core'
-#     ss.dependency 'Pingpp/WebView'
-#   end
+  s.subspec 'QQWallet' do |ss|
+    ss.vendored_libraries = 'lib/Channels/QQWallet/*.a'
+    ss.dependency 'Pingpp/Core'
+  end
 
-#   s.subspec 'CmbWallet' do |ss|
-#     ss.vendored_libraries = 'lib/Channels/CmbWallet/*.a'
-#     ss.ios.vendored_frameworks = 'lib/Channels/CmbWallet/cmbkeyboard.framework'
-#     ss.resource = 'lib/Channels/CmbWallet/SecreteKeyBoard'
-#     ss.dependency 'Pingpp/Core'
-#     ss.dependency 'Pingpp/WebView'
-#   end
+  s.subspec 'WebView' do |ss|
+    ss.vendored_libraries = 'lib/Dependencies/WebView/*.a'
+    ss.dependency 'Pingpp/Core'
+  end
 
-#   s.subspec 'Jdpay' do |ss|
-#     ss.vendored_libraries = 'lib/Channels/Jdpay/*.a'
-#     ss.dependency 'Pingpp/Core'
-#     ss.dependency 'Pingpp/WebView'
-#   end
-
-#   s.subspec 'QQWallet' do |ss|
-#     ss.vendored_libraries = 'lib/Channels/QQWallet/*.a'
-#     ss.dependency 'Pingpp/Core'
-#   end
-
-#   s.subspec 'WebView' do |ss|
-#     ss.vendored_libraries = 'lib/Dependencies/WebView/*.a'
-#     ss.dependency 'Pingpp/Core'
-#   end
-
-# end
+end
